@@ -1,0 +1,80 @@
+.container {
+    width: 500px;
+    margin: auto;
+}
+
+.calculator {
+    width: 400px;
+    height: 600px;
+    background: linear-gradient(to right, red , purple);
+    border: solid #eee 1px;
+    border-radius: 10px;
+}
+
+.calculator-screen {
+    margin: auto;
+    margin-top:20px;
+    width: 350px;
+    height: 80px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.calculator-screen-content {
+    padding: 20px;
+}
+
+.calculator-keyboard {
+    width: 350px;
+    margin: 30px auto;
+}
+
+.calculator-keyboard-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.calculator-keyboard-key {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    transition-property: background;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in;
+}
+
+.stretch {
+    width: calc(120px + 110px/3);
+}
+
+@keyframes animKeys {
+    from {
+        color: black
+    }
+    to {
+        color: purple;
+    }
+}
+
+@-webkit-keyframes animKeys {
+    from {
+        color: black
+    }
+    to {
+        color: purple;
+    }
+}
+
+
+.calculator-keyboard-key:hover {
+    cursor: pointer;
+    background: #1199ff;
+    animation: animKeys 1s;
+    -webkit-animation: animKeys 1s;
+}
