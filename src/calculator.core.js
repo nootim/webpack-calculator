@@ -1,5 +1,5 @@
-import { fromEvent, BehaviorSubject, interval } from "rxjs";
-import { tap, timeoutWith } from 'rxjs/operators';
+import { fromEvent } from "rxjs";
+import { tap } from 'rxjs/operators';
 
 export class Calculator {
 
@@ -15,20 +15,34 @@ export class Calculator {
   getKeyNumber$ = () => {
     return fromEvent(document.querySelectorAll('.number'), 'click').pipe(
       tap((val) => {
+        const number = val.target.innerHTML;
         if (this.operation === null) {
-          if (val.target.innerHTML === '.' && this.firstOperande.includes('.')) { return }
-          this.firstOperande += val.target.innerHTML;
+          if (number === '.' && this.firstOperande.includes('.')) { return }
+          if (number === '%') {
+            this.firstOperande = this.firstOperande / 100;
+            this.screenView = this.firstOperande;
+            document.getElementById('screenView').textContent = this.screenView;
+            return;
+          }
+          this.firstOperande += number;
           this.screenView = this.firstOperande;
           document.getElementById('screenView').textContent = this.screenView;
         } else {
-          if (val.target.innerHTML === '.' && this.secondOperande.includes('.')) { return }
-          this.secondOperande += val.target.innerHTML;
-          this.screenView += val.target.innerHTML;
+          if (number === '.' && this.secondOperande.includes('.')) { return }
+          if (number === '%') {
+            this.secondOperande = this.firstOperande * this.secondOperande / 100;
+            this.screenView = this.firstOperande + ' ' + this.operation + ' ' + this.secondOperande;
+            document.getElementById('screenView').textContent = this.screenView;
+            return
+          }
+          this.secondOperande += number;
+          this.screenView += number;
           document.getElementById('screenView').textContent = this.screenView;
         }
       })
     )
   }
+
 
   getOperator$ = () => {
     return fromEvent(document.querySelectorAll('.operator'), 'click').pipe(
@@ -49,7 +63,7 @@ export class Calculator {
 
   getEqual$ = () => {
     return fromEvent(document.querySelectorAll('.equal'), 'click').pipe(
-      tap((val) => {
+      tap(() => {
         this.compute()
       })
     );
