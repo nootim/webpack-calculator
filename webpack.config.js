@@ -9,9 +9,9 @@ module.exports = {
             {
                 test: /\.js$/i, // Regex fichiers javascript
                 exclude: /node_modules/, // exclusion du répertoire node_modules
-                use: {
-                    loader: 'babel-loader', // lance le loader babel
-                }
+                use: [
+                    'babel-loader', // lance le loader babel
+                ]
             },
             {
                 test: /\.scss$/i, // regex fichiers scss
@@ -36,6 +36,7 @@ module.exports = {
         }),
         new MiniCSSExtractPlugin({
             filename: '[name].css',
-            chunkFilename: '[id].css'    })
+            chunkFilename: '[id].css'
+        })
     ]
 };
