@@ -26,6 +26,11 @@ module.exports = {
                 test: /\.html$/i, // regex fichier html
                 loader: 'html-loader', // lance loader html
             },
+            {
+                test: /\.js$/,
+                use: ["source-map-loader"], // fixe les warnings dans la console
+                enforce: "pre"
+              }
 
         ],
     },

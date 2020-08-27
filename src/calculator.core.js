@@ -1,5 +1,5 @@
-import { fromEvent } from "rxjs";
-import { tap } from 'rxjs/operators';
+import { fromEvent, BehaviorSubject, interval } from "rxjs";
+import { tap, timeoutWith } from 'rxjs/operators';
 
 export class Calculator {
 
@@ -8,6 +8,9 @@ export class Calculator {
   screenView = '';
   result = 0;
   operation = null;
+  modal = document.getElementById('modal');
+  modalTextContent = document.getElementById('modalTextContent');
+
 
   getKeyNumber$ = () => {
     return fromEvent(document.querySelectorAll('.number'), 'click').pipe(
@@ -31,10 +34,10 @@ export class Calculator {
     return fromEvent(document.querySelectorAll('.operator'), 'click').pipe(
       tap((val) => {
         if (this.firstOperande === '') {
-          alert('il faut saisir un nombre');
+          this.launchAlert('Il faut saisir un chiffre');
           return
         } else if (this.operation !== null) {
-          alert('il faut taper égal après avoir saisie 2 valeurs et une opération');
+          this.launchAlert('il faut taper égal après avoir saisie 2 valeurs et une opération')
         } else {
           this.operation = val.target.innerHTML;
           this.screenView = this.screenView + ' ' + this.operation + ' ';
@@ -50,6 +53,16 @@ export class Calculator {
         this.compute()
       })
     );
+  }
+
+  launchAlert = (message) => {
+    this.modal.classList.remove('modal-error--hidden');
+    this.modal.classList.add('modal-error--visible');
+    this.modalTextContent.textContent = message;
+    setTimeout(() => {
+      this.modal.classList.add('modal-error--hidden');
+      this.modal.classList.remove('modal-error--visible');
+    }, 3000)
   }
 
   reset$ = () => {
@@ -86,7 +99,7 @@ export class Calculator {
       this.secondOperande = '';
       this.operation = null;
     } else {
-      alert('Il y a un problème calcul impossible')
+      this.launchAlert('Il y a un problème calcul impossible')
     }
     document.getElementById('result').textContent = this.result;
 
@@ -97,6 +110,7 @@ export class Calculator {
     this.getOperator$().subscribe()
     this.getEqual$().subscribe()
     this.reset$().subscribe()
+
   }
 
 }

@@ -1,85 +1,118 @@
 .container {
-    width: 500px;
-    margin: auto;
+  width: 500px;
+  margin: auto;
 }
 
 .calculator {
-    width: 400px;
-    height: 600px;
-    background: linear-gradient(to right, red , purple);
-    border: solid #eee 1px;
-    border-radius: 10px;
+  width: 400px;
+  height: 600px;
+  background: linear-gradient(to right, red, purple);
+  border: solid #eee 1px;
+  border-radius: 10px;
 }
 
 .calculator-screen {
-    margin: auto;
-    margin-top:20px;
-    width: 350px;
-    height: 80px;
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 10px;
+  margin: auto;
+  margin-top: 20px;
+  width: 350px;
+  height: 80px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
 }
 
 .calculator-screen-content {
-    padding: 20px;
+  padding: 20px;
 }
 
 .calculator-detail-content {
-    text-align: right;
-    padding-right: 20px;
+  text-align: right;
+  padding-right: 20px;
 }
 
 .calculator-keyboard {
-    width: 350px;
-    margin: 30px auto;
+  width: 350px;
+  margin: 30px auto;
 }
 
 .calculator-keyboard-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
 }
 
 .calculator-keyboard-key {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 10px;
-    transition-property: background;
-    transition-duration: 0.5s;
-    transition-timing-function: ease-in;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  transition-property: background;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in;
 }
 
 .stretch {
-    width: calc(120px + 110px/3);
+  width: calc(120px + 110px / 3);
 }
 
 @keyframes animKeys {
-    from {
-        color: black
-    }
-    to {
-        color: purple;
-    }
+  from {
+    color: black;
+  }
+  to {
+    color: purple;
+  }
 }
 
 @-webkit-keyframes animKeys {
-    from {
-        color: black
-    }
-    to {
-        color: purple;
-    }
+  from {
+    color: black;
+  }
+  to {
+    color: purple;
+  }
 }
 
-
 .calculator-keyboard-key:hover {
-    cursor: pointer;
-    background: #1199ff;
-    animation: animKeys 1s;
-    -webkit-animation: animKeys 1s;
+  cursor: pointer;
+  background: #1199ff;
+  animation: animKeys 1s;
+  -webkit-animation: animKeys 1s;
+}
+
+.modal-error--hidden {
+  display: none;
+}
+
+.modal-error--visible {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 10; 
+    left: 0;
+    top: 0;
+}
+
+.modal-text-content {
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background: #2244DD;
+    width: 200px;
+    z-index: 12;
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    transform: translate(-50%, -50%);
+    
+}
+
+.button-modal {
+  margin-top: 15px;
+  text-align: center;
 }
