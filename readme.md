@@ -6,3 +6,5 @@ déployer le dossier dist sur le serveur après npm run build
 
 dev : npm run dev
 build: npm run build
+
+https://nootim-calculator-webpack.netlify.app/
