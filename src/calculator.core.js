@@ -50,7 +50,7 @@ export class Calculator {
         if (this.firstOperande === '') {
           this.launchAlert('Il faut saisir un chiffre');
           return
-        } else if (this.operation !== null) {
+        } else if (this.operation) {
           this.launchAlert('il faut taper égal après avoir saisie 2 valeurs et une opération')
         } else {
           this.operation = val.target.innerHTML;
@@ -94,7 +94,7 @@ export class Calculator {
   }
 
   compute() {
-    if (this.firstOperande !== '' && this.operation !== null && this.secondOperande !== '') {
+    if (this.firstOperande && this.operation && this.secondOperande) {
       switch (this.operation) {
         case '+':
           this.result = Number(this.firstOperande) + Number(this.secondOperande);
